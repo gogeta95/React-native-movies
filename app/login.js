@@ -10,8 +10,10 @@ import {
 
 let username;
 let password;
-
 class LoginComponent extends Component {
+  static navigationOptions = {
+    headerVisible: false,
+  };
 
   constructor(props){
     super(props);
@@ -22,6 +24,8 @@ class LoginComponent extends Component {
   }
 
   render() {
+
+   const { navigate } = this.props.navigation;
     return (
       <View style={{flex: 1,backgroundColor : '#00BCD4',justifyContent: 'center'}}>
 
@@ -49,6 +53,7 @@ class LoginComponent extends Component {
                       () => {
                         console.log('Username: '+this.username+' Password: '+this.password);
                         this.startLoading();
+                        navigate('Movies',{});
                       }
                     }/>
           </View>
