@@ -31,7 +31,6 @@ constructor(props){
   }
 }
 
-export default Movie;
 
 var styles = StyleSheet.create({
   movie: {
@@ -40,3 +39,5 @@ var styles = StyleSheet.create({
     alignItems: 'stretch',
   }
 });
+
+export default Movie;

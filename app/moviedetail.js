@@ -6,17 +6,27 @@ import {
   Image
 } from 'react-native';
 
+const BACKDROP_BASE_URL = "http://image.tmdb.org/t/p/w500";
+
 class MovieDetail extends Component {
 
-  static navigationOptions = {
-    title: 'Movie Name',
-  };
+  static navigationOptions = ({navigation}) => ({
+    title: `${navigation.state.params.original_title}`,
+  });
 
 
   render(){
-    return (
-      <View style={{flex:1}}>
 
+      const movie = this.props.navigation.state.params;
+      let imageUrl = BACKDROP_BASE_URL + movie.backdrop_path;
+
+    return (
+      <View style={{flex:1,alignItems :'stretch'}}>
+        <Image  source={{uri : imageUrl }}
+        style={{height: 240}}/>
+        <Text style={{ padding: 16}}>
+        {movie.overview}
+        </Text>
       </View>
     );
   }
