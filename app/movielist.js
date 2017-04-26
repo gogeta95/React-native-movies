@@ -10,6 +10,7 @@ import GridView from 'react-native-grid-view';
 import Movie from './movie';
 
 const FETCH_MOVIES_URL ="https://api.themoviedb.org/3/movie/popular?api_key="+TMDB_KEY;
+var navigate;
 
 class MoviesComponent extends Component {
   static navigationOptions = {
@@ -37,6 +38,7 @@ loadMovies() {
   }
 
     render(){
+      navigate  = this.props.navigation.navigate;
       return (
         <View style={{flex: 1, backgroundColor: 'green'}}>
         { this.state.results.length>0 &&<GridView
@@ -44,7 +46,7 @@ loadMovies() {
         itemsPerRow={2}
         renderItem={this.renderMovie}
         />}
-        { this.state.results.length<=0 && <View style={{flex: 1,position: 'absolute',top: 0, left: 0, right: 0, bottom: 0,justifyContent: 'center',alignItems: 'center',}}>
+        { this.state.results.length<=0 && <View style={{flex: 1,position: 'absolute',top: 0, left: 0, right: 0, bottom: 0,justifyContent: 'center',alignItems: 'center'}}>
               <ProgressBarAndroid  color='orange' />
           </View>}
         </View>
@@ -53,8 +55,10 @@ loadMovies() {
     }
 
     renderMovie(movie){
+      console.log(this.props);
       return <Movie movie={movie}
-      key = {movie.id}/>
+      key = {movie.id}
+      navigate={navigate}/>
     }
 
 }
